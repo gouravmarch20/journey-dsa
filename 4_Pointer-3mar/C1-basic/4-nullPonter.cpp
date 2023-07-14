@@ -1,11 +1,9 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
-#include <climits>
 
 using namespace std;
 int main()
 {
-    cout << "hello" << endl;
+    int *ptr = 0; //^ null pointer -> not pointing to any address
     return 0;
 }
