@@ -7,4 +7,4 @@
 // if person travel full distance -> 100km
 // it's half distance is --> 100/2 => 50 km //~ always mid
 
-//way2 >> simple odd even 
+//way2 >> simple odd even   

@@ -62,11 +62,12 @@ void insertAtPosition(int data, int position, Node *&head, Node *&tail)
         return;
     }
     // ^ use of greater than sign -> more than LL length then -->  insert at last ,and update tail
-    if (position >= getLength(head))
-    {
-        insertAtTail(head, tail, data);
-        return;
-    }
+    //? this case also handle by middle code --> no segment fault -> null assigned in class 
+    // if (position >= getLength(head))
+    // {
+    //     insertAtTail(head, tail, data);
+    //     return;
+    // }
     //? in between head , tail
     int i = 1;
     // step1 : create new node
@@ -107,12 +108,12 @@ int main()
     printLL(head);
     cout << "head  " << head->data << " tail  " << tail->data << endl;
     //? middle 
-    insertAtPosition(101, 1, head, tail);
-    printLL(head);
-    cout << "head  " << head->data << " tail  " << tail->data << endl;
+    // insertAtPosition(101, 1, head, tail);
+    // printLL(head);
+    // cout << "head  " << head->data << " tail  " << tail->data << endl;
 
     //?more than LL length
-    insertAtPosition(102, 5, head, tail);
+    insertAtPosition(102, 3, head, tail);
     printLL(head);
     cout << "head  " << head->data << " tail  " << tail->data << endl;
 
