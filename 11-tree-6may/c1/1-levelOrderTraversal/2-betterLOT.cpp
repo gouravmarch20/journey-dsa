@@ -5,7 +5,6 @@
 #include <queue>
 #include <algorithm>
 #include <deque>
-
 using namespace std;
 
 class Node
@@ -22,48 +21,44 @@ public:
         right = NULL;
     }
 };
-Node *buildTree(vector<int> arr, int i)
+Node *buildTree()
 {
-    int data = arr[i];
-    ++i;
-    //
+    int data;
+    cout << "Enter the data: " << endl;
+    cin >> data;
+
     if (data == -1)
     {
         return NULL;
     }
 
+    // Step A , B and C
     Node *root = new Node(data);
 
-    root->left = buildTree(arr, i);
+    cout << "Enter data for left part of " << data << " node " << endl;
+    root->left = buildTree();
 
-    root->right = buildTree(arr, i);
+    cout << "Enter data for right part of " << data << " node " << endl;
+    root->right = buildTree();
+
     return root;
 }
 void levelOrderTraversal(Node *root)
 {
-    if (root == NULL)
-    {
-        return; // Handle the case of an empty tree
-    }
     queue<Node *> q;
-
-    // root value assign
+    // inital
     q.push(root);
-    q.push(NULL); //^ why
-
-    //
+    q.push(NULL);//M 
     while (!q.empty())
     {
-        // A:
+        // A
         Node *temp = q.front();
-        // B:
+        // B
         q.pop();
-        // C:
+
         if (temp == NULL)
         {
-            // go to the next line
             cout << endl;
-            // Marking for next level
             if (!q.empty())
             {
                 q.push(NULL);
@@ -71,27 +66,27 @@ void levelOrderTraversal(Node *root)
         }
         else
         {
+            // C
             cout << temp->data << " ";
-            // left child exists
+            // D
             if (temp->left)
             {
                 q.push(temp->left);
             }
-            // right child exists
             if (temp->right)
             {
                 q.push(temp->right);
             }
         }
-    }
+    } 
 }
+
 int main()
 {
-    vector<int> arr = {20, 30, 50, -1, 60, -1, -1, 40, -1, -1, 100, -1, -1};
-    Node *root = NULL;
-    int i = 0;
-    root = buildTree(arr, i);
-
+    vector<int> arr = {10, 20, 40, -1, -1, 50, -1, -1, 30 , -1 , -1};
+    Node *root = nullptr;
+    root = buildTree();
     levelOrderTraversal(root);
+
     return 0;
 }

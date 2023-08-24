@@ -1,6 +1,12 @@
 // 84. Largest Rectangle in Histogram
 // -> height is constant , width  can increase 
 
+
+//? optimize
+//NOTE: find next smaller height , prev smaller height index --> because between them width we will include , and height is constant
+
+//^  equal height will not come in next smaller height , prev smaller height--> because same height area create
+
 //? brute - way1
 /**
   - every bar if (continuos && greater) than current consider 
@@ -16,4 +22,3 @@
  */
 
 
-//? optimize
