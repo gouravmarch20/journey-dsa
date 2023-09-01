@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <deque>
 using namespace std;
-
+// TODO: ASK HOW maxHeight WORKING
 class Node
 {
 public:
@@ -81,6 +81,7 @@ int maxHeight(Node *root)
     int ans = max(leftNodeHeight, rightNodeHeight) + 1;
     return ans;
 }
+
 int main()
 {
     vector<int> arr = {10, 20, 40, -1, -1, 50, -1, -1, 30, -1, 60, 70, -1, -1, -1};
