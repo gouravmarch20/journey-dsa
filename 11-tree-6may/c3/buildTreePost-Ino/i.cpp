@@ -5,7 +5,7 @@
 #include <queue>
 #include <stack>
 #include <vector>
-
+// TODO: DRY RUN
 using namespace std;
 
 class Node {
@@ -33,7 +33,9 @@ void levelOrderTraversal(Node* root) {
 
     if (temp == NULL) {
       cout << endl;
-      if (!q.empty())  
+      if (!q.empty())  //! if queue is not empty then only push null, avoid
+                       //! infinite loop --> if empty queue means the end of
+                       //! tree
       // ? it's grantee that queue will only only empty when tree ended --> each
       // node have 2 child in queue & we keep push them
       {
@@ -62,39 +64,40 @@ int findPosition(int arr[], int n, int element) {
   return -1;
 }
 // size : to avoid going out
-// index : preorder root access
+// index : postorder root access
 // inorder start -> left side of root
 // inorder end -> right side of root
-Node* buildTreeFormPreOrderInorder(int inOrder[], int preOrder[], int size,
-                                   int& preIndex, int inOrderStartIndex,
-                                   int inOrderEndIndex) {
+Node* buildTreeFormPostOrderInorder(int inOrder[], int postOrder[],
+                                    int& postIndex, int size, int inOrderStart,
+                                    int inOrderEnd) {
   // base case ->
-  if (preIndex >= size || inOrderStartIndex > inOrderEndIndex) {
+  if (postIndex < 0 || inOrderStart > inOrderEnd) {
     return NULL;
   }
-  //   step1: create root by preorder preIndex
-  int element = preOrder[preIndex++];  //^ increment preIndex as ref var
+  //   step1: create root by postorder postIndex
+  int element = postOrder[postIndex];  //^ increment postIndex as ref var
+  postIndex--;
   Node* root = new Node(element);
   //   step2 : find postion center for inorder
   int position = findPosition(inOrder, size, element);
   //   step3: root left solve
-  root->left = buildTreeFormPreOrderInorder(inOrder, preOrder, size, preIndex,
-                                            inOrderStartIndex, position - 1);
-  root->right = buildTreeFormPreOrderInorder(inOrder, preOrder, size, preIndex,
-                                             position + 1, inOrderEndIndex);
+  root->right = buildTreeFormPostOrderInorder(inOrder, postOrder, postIndex,
+                                              size, position + 1, inOrderEnd);
+  root->left = buildTreeFormPostOrderInorder(inOrder, postOrder, postIndex,
+                                             size, inOrderStart, position - 1);
   return root;
 }
 
 int main() {
-  int inorder[] = {40, 20, 50, 10, 60, 30};
-  int preorder[] = {10, 20, 40, 50, 30, 60};
+  int inorder[] = {40, 20, 10, 50, 30, 60};
+  int postorder[] = {40, 20, 50, 60, 30, 10};
   int size = 6;
-  int preIndex = 0;
+  int postIndex = size - 1;
   int inorderStart = 0;
   int inorderEnd = size - 1;
   cout << "building tree " << endl;
-  Node* root = buildTreeFormPreOrderInorder(inorder, preorder, size, preIndex,
-                                            inorderStart, inorderEnd);
+  Node* root = buildTreeFormPostOrderInorder(inorder, postorder, postIndex,
+                                             size, inorderStart, inorderEnd);
   cout << "print level order traversal  " << endl;
   levelOrderTraversal(root);
 

@@ -1,67 +1,98 @@
+#include <algorithm>
+#include <climits>
+#include <deque>
 #include <iostream>
-#include <unordered_map>
+#include <queue>
+#include <stack>
 #include <vector>
 
 using namespace std;
 
-// Definition for a binary tree node.
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
-class Solution {
+class Node {
 public:
-    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        // Create a map to store the indices of elements in the inorder traversal
-        unordered_map<int, int> inorder_map;
-        for (int i = 0; i < inorder.size(); ++i) {
-            inorder_map[inorder[i]] = i;
-        }
-        
-        int preorderIndex = 0;
-        return buildTreeHelper(preorder, inorder_map, preorderIndex, 0, inorder.size() - 1);
-    }
-    
-    TreeNode* buildTreeHelper(vector<int>& preorder, unordered_map<int, int>& inorder_map, int& preorderIndex, int inorderStart, int inorderEnd) {
-        if (preorderIndex >= preorder.size() || inorderStart > inorderEnd) {
-            return nullptr;
-        }
-        
-        int rootValue = preorder[preorderIndex];
-        int inorderIndex = inorder_map[rootValue];
-        
-        TreeNode* root = new TreeNode(rootValue);
-        preorderIndex++;
-        
-        root->left = buildTreeHelper(preorder, inorder_map, preorderIndex, inorderStart, inorderIndex - 1);
-        root->right = buildTreeHelper(preorder, inorder_map, preorderIndex, inorderIndex + 1, inorderEnd);
-        
-        return root;
-    }
+  int data;
+  Node* left;
+  Node* right;
+  Node(int data) {
+    this->data = data;
+    this->left = NULL;
+    this->right = NULL;
+  }
 };
 
-// Function to print the inorder traversal of the tree (for verification)
-void printInorder(TreeNode* root) {
-    if (root == nullptr) {
-        return;
+void levelOrderTraversal(Node* root) {
+  if (!root) {
+    return;
+  }
+
+  queue<Node*> q;
+  q.push(root);
+
+  while (!q.empty()) {
+    int levelSize = q.size();  // Number of nodes at this level
+
+    for (int i = 0; i < levelSize; i++) {
+      Node* temp = q.front();
+      q.pop();
+
+      if (temp) {
+        cout << temp->data << " ";
+        q.push(temp->left);
+        q.push(temp->right);
+      } else {
+        cout << "null ";
+      }
     }
-    printInorder(root->left);
-    cout << root->val << " ";
-    printInorder(root->right);
+
+    cout << endl;  // Move to the next level
+  }
+}
+
+int findPosition(int arr[], int n, int element) {
+  for (int i = 0; i < n; i++) {
+    if (arr[i] == element) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+Node* buildTreeFormPreOrderInorder(int inOrder[], int preOrder[], int size,
+                                   int& preIndex, int inOrderStartIndex,
+                                   int inOrderEndIndex) {
+  // Base case
+  if (preIndex >= size || inOrderStartIndex > inOrderEndIndex) {
+    return NULL;
+  }
+
+  // Create the root node using the current element from the preorder traversal
+  int element = preOrder[preIndex++];
+  Node* root = new Node(element);
+
+  // Find the position of the element in the inorder traversal
+  int position = findPosition(inOrder, size, element);
+
+  // Recursively build the left and right subtrees
+  root->left = buildTreeFormPreOrderInorder(inOrder, preOrder, size, preIndex,
+                                            inOrderStartIndex, position - 1);
+  root->right = buildTreeFormPreOrderInorder(inOrder, preOrder, size, preIndex,
+                                             position + 1, inOrderEndIndex);
+
+  return root;
 }
 
 int main() {
-    Solution solution;
-    vector<int> preorder = {3, 9, 20, 15, 7};
-    vector<int> inorder = {9, 3, 15, 20, 7};
-    
-    TreeNode* root = solution.buildTree(preorder, inorder);
-    
-    cout << "Inorder traversal of constructed tree: ";
-    printInorder(root);
-    
-    return 0;
+  int inorder[] = {9, 3, 15, 20, 7};
+  int preorder[] = {3, 9, 20, 15, 7};
+  int size = 5;  // Corrected size
+  int preIndex = 0;
+  int inorderStart = 0;
+  int inorderEnd = size - 1;
+  cout << "Building tree..." << endl;
+  Node* root = buildTreeFormPreOrderInorder(inorder, preorder, size, preIndex,
+                                            inorderStart, inorderEnd);
+  cout << "Printing level order traversal:" << endl;
+  levelOrderTraversal(root);
+
+  return 0;
 }
