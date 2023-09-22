@@ -1,0 +1,1 @@
+// Count Total Number of Colored Cells - Submission Detail - LeetCode

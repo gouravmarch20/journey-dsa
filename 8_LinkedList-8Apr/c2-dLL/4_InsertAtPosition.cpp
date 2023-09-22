@@ -89,7 +89,7 @@ void insertAtPosition( int data,int position, Node *&head, Node *&tail)
     }
     // tail case
     int len = getLength(head);
-    //REVISION: WHY == NOT >=
+    //R:: WHY == NOT >=
     if (position == len)
     {
         insertAtTail(data, head, tail);
@@ -127,7 +127,7 @@ int main()
     insertAtHead(5, head, tail);
     insertAtTail(8, head, tail);
     insertAtTail(15, head, tail);
-// BUG:
+// B::
     // insertAtPosition(401, 3, head, tail);//FIXME EQUAL CASE
     insertAtPosition(402, 4, head, tail);// EXTRA REPET 
 

@@ -110,7 +110,7 @@ void deleteNode(int position, Node *&head, Node *&tail)
     }
     Node *toDeleteNode = prev->next;
 
-    // BUG test --> second last LL item delete
+    // B: test --> second last LL item delete
     if (toDeleteNode->next == NULL)
     {
         prev->next = NULL;
