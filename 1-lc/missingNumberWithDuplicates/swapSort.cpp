@@ -14,7 +14,7 @@ int missingNoWithDuplicates(vector<int>& nums) {
     int index = nums[i] - 1;
 
     if (nums[i] != nums[index]) {// NOTE stuck in self code of i managing
-      swap(nums[i], nums[index]);  
+      swap(nums[i], index);  
     } else {
       i++;
     }

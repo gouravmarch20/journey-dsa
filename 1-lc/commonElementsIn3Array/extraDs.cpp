@@ -1,7 +1,7 @@
 #include <iostream>
 #include <set>
 #include <vector>
-
+//B: getting error
 using namespace std;  // Bring the std namespace into scope
 
 int main() {

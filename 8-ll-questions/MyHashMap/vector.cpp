@@ -1,7 +1,7 @@
 // class MyHashMap {
 // public:
 //      vector <int> v;
-//       int size = 1e6+1;
+//       int size = 1e6+1;//L:
 //     MyHashMap() {
 
 //       v.resize(size);

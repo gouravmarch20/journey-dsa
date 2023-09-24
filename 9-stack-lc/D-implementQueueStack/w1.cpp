@@ -1,1 +1,1 @@
-// basic thinking
+// basic thinking -> 
