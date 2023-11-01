@@ -1,0 +1,2 @@
+
+//* amount ^ coins.size() ==: exponential

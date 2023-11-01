@@ -35,7 +35,7 @@
 //        List<TreeNode> res=new ArrayList<>();
 //        Queue<TreeNode> q=new LinkedList<>();
 //        q.add(root);
-//        int count=1;
+//        int count=1;//L: 1st allready done , 1 sai start 
 //        while(q.size()!=0){
 //            count++;
 //            List<TreeNode> al=new ArrayList<>();

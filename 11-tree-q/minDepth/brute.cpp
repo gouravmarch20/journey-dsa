@@ -1,0 +1,1 @@
+//each node find distance till leaf node --> store in hashmap path of root on bases of last element /  leafnode count  , there min 
