@@ -1,0 +1,1 @@
+//todo:: by binary search --> index base logic diff 1 ==> 0 to n range 

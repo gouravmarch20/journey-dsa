@@ -69,5 +69,8 @@
         "variant": "cpp",
         "algorithm": "cpp",
         "__verbose_abort": "cpp"
-    }
+    },
+    "cSpell.words": [
+        "leftsum"
+    ]
 }
