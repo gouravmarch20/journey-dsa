@@ -10,7 +10,9 @@
 //             int res = coinChangeRec(coins , amount - coins[i]);
 // // ! avoid INT_MAX ==> case min(INT_MAX , INT_MAX) => INT_MAX + 1 -> signed integer overflow
 //             if(res != INT_MAX){
-//                   mini = min(mini , res) + 1; 
+    //              ans = min(ans , res + 1);//L: prevMin , current min
+
+              //  //M   mini = min(mini , res) + 1;//
 //             }
           
 //         }

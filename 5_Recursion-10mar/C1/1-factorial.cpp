@@ -1,27 +1,22 @@
 #include <iostream>
 using namespace std;
 
-int factorial(int n)
-{
+int factorial(int n) {
+  // base case
+  if (n == 1) return 1;
 
-    // base case
-    if (n == 1)
-        return 1;
+  int chotiProblemAns = factorial(n - 1);
+  int badiProblemAns = n * chotiProblemAns;
 
-    int chotiProblemAns = factorial(n - 1);
-    int badiProblemAns = n * chotiProblemAns;
-
-    return badiProblemAns;
+  return badiProblemAns;
 }
 
-int main()
-{
+int main() {
+  int n = 5;
 
-    int n = 5;
+  int ans = factorial(n);
 
-    int ans = factorial(n);
+  cout << "Answer is: " << ans << endl;
 
-    cout << "Answer is: " << ans << endl;
-
-    return 0;
+  return 0;
 }

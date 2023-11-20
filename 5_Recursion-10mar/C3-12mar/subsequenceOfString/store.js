@@ -1,21 +1,20 @@
-function printSubString(s, output, i , arr) {
+function printSubString(s, output, i, arr) {
   if (i >= s.length) {
     // console.log(output);
-    arr.push(output);
+    arr.push(output)
 
-    return;
+    return
   }
   // exclude
-  printSubString(s, output, i + 1,arr);
+  printSubString(s, output, i + 1, arr)
   // include
-  output += s[i];
-  printSubString(s, output, i + 1,arr);
+  output += s[i]
+  printSubString(s, output, i + 1, arr)
 }
 
-
-const s = "ab";
-let output = "";
-let i = 0;
-let arr =[]
-printSubString(s, output, i,arr);
-console.log(arr);
+const s = "ab"
+let output = ""
+let i = 0
+let arr = []
+printSubString(s, output, i, arr)
+console.log(arr)

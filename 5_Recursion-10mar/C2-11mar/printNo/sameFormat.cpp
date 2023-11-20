@@ -16,7 +16,7 @@ void printNo(int &no) {
 }
 
 int main() {
-//   int no = 0647;//NOTE octal digit in cpp --> leading 0
+  //   int no = 0647;//NOTE octal digit in cpp --> leading 0
   int no = 647;
   if (no == 0) {
     cout << 0 << endl;

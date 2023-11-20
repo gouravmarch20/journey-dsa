@@ -28,10 +28,10 @@ void printArr(vector<int> arr, int n, int i) {
 
 int main() {
   vector<int> arr{10, 20, 30, 40, 50};
-    int arrW[5] = {10, 20, 30, 40, 50};
+  int arrW[5] = {10, 20, 30, 40, 50};
   int i = 0;
-//   printArrW(arrW, 5);
-//   printArr(arr, arr.size(), i);
+  //   printArrW(arrW, 5);
+  //   printArr(arr, arr.size(), i);
 
   return 0;
 }
