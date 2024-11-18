@@ -68,9 +68,11 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "algorithm": "cpp",
-        "__verbose_abort": "cpp"
+        "__verbose_abort": "cpp",
+        "unordered_set": "cpp"
     },
     "cSpell.words": [
         "leftsum"
-    ]
+    ],
+    "C_Cpp.default.cppStandard": "c++11"
 }
