@@ -1,0 +1,25 @@
+// class Solution {
+// public:
+//     int recSol(string s1 , string s2 , int i  , int j){
+//         if(i == s1.length()){
+//             return s2.length() - j;
+//         }
+//         if(j == s2.length()){
+//             return s1.length() - i ;
+//         }
+//         // 
+//         int ans = 0;
+//         if(s1[i] == s2[j]){
+//             ans =  recSol(s1 , s2 , i + 1 , j+1);
+//         }else{
+//             int inst = 1 + recSol(s1 , s2 , i , j + 1);
+//             int del = 1 + recSol(s1 , s2 , i + 1 , j);
+//             int replace = 1 + recSol(s1 , s2 , i + 1, j + 1);
+//            ans =  min(inst , min(del , replace));
+//         }
+//         return ans;
+//     }
+//     int minDistance(string word1, string word2) {
+//        return  recSol(word1 , word2 , 0 , 0);
+//     }
+// };

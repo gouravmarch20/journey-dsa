@@ -12,10 +12,27 @@
 // class Solution {
 // public:
 //     TreeNode* searchBST(TreeNode* root, int val) {
-//         while(root && root->val != val){
-//       //M root = root->val > val ? root->right : root->left ;// oppisite sign
-//             root = val < root->val ? root->left : root->right;
-//         }
+
+//              while(root != nullptr && root->val != val){
+ 
+ 
+        //    if( val < root->val ){
+            //     root = root->left;
+            //      }else{
+            //             root = root->right;
+            //     }
+// !M1:: if if --> no else breaking  root remain same --> to infinite while loop 
+            // if( val < root->val){
+            //     root = root->left;
+            // }
+            // if( val > root->val){
+            //     root = root->right;
+            // }
+            
+            // }
+  
+ 
 //         return root;
+        
 //     }
 // };
