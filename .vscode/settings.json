@@ -70,7 +70,9 @@
         "algorithm": "cpp",
         "__verbose_abort": "cpp",
         "unordered_set": "cpp",
-        "w1-cpp": "cpp"
+        "w1-cpp": "cpp",
+        "execution": "cpp",
+        "print": "cpp"
     },
     "cSpell.words": [
         "leftsum"
