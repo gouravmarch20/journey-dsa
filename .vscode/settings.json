@@ -72,7 +72,8 @@
         "unordered_set": "cpp",
         "w1-cpp": "cpp",
         "execution": "cpp",
-        "print": "cpp"
+        "print": "cpp",
+        "climits": "cpp"
     },
     "cSpell.words": [
         "leftsum"
