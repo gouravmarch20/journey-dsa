@@ -1,6 +1,7 @@
 #include <vector>
 #include <climits> // For INT_MAX
 #include <algorithm> // For std::min
+#include <iostream>
 using namespace std;
 class Solution
 {
