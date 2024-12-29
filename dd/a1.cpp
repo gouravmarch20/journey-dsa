@@ -1,82 +1,36 @@
-#include <bits/stdc++.h>
+#include <unordered_map>
+#include <vector>
 using namespace std;
 
-/**
- * Definition for a binary tree node.
- */
-struct TreeNode
-{
-     int data;
-     TreeNode *left;
-     TreeNode *right;
-     TreeNode(int val) : data(val), left(nullptr), right(nullptr) {}
-};
-
-class Solution
-{
+class Solution {
 public:
-     TreeNode *bstFromPreorder(vector<int> &preorder)
-     {
-          // Check if the preorder list is empty
-          if (preorder.empty())
-               return nullptr;
+    int longestSubarray(vector<int>& nums, int k) {
+        int n = nums.size(); 
+        int maxLength = 0;
+        unordered_map<int, int> mpPrefixSum; // Stores prefix sums and their first occurrences
+        int sum = 0;
 
-          // The first element is the root
-          TreeNode *root = new TreeNode(preorder[0]);
-          stack<TreeNode *> s;
-          s.push(root);
+        for (int i = 0; i < n; i++) { 
+            sum += nums[i];
 
-          // Iterate through the rest of the elements
-          for (int i = 1; i < preorder.size(); ++i)
-          {
-               TreeNode *node = s.top();
-               TreeNode *child = new TreeNode(preorder[i]);
+            // If the running sum equals k, the subarray from the start to the current index is valid
+            if (sum == k) {
+                maxLength = max(maxLength, i + 1);
+            }
 
-               // Adjust the stack and place the node in the right position
-               while (!s.empty() && s.top()->data < preorder[i])
-               {
-                    node = s.top();
-                    s.pop();
-               }
+            // Check if there exists a prefix sum such that the subarray equals k
+            int rem = sum - k;
+            if (mpPrefixSum.find(rem) != mpPrefixSum.end()) {
+                int len = i - mpPrefixSum[rem]; // Calculate the length of the subarray
+                maxLength = max(maxLength, len);
+            }
 
-               // Insert node as left or right child
-               if (node->data < preorder[i])
-               {
-                    node->right = child;
-               }
-               else
-               {
-                    node->left = child;
-               }
+            // Only store the first occurrence of a prefix sum
+            if (mpPrefixSum.find(sum) == mpPrefixSum.end()) {
+                mpPrefixSum[sum] = i;
+            }
+        }
 
-               // Push the child node to the stack
-               s.push(child);
-          }
-
-          return root;
-     }
+        return maxLength;
+    }
 };
-
-// Function to print the tree in-order for testing
-void inorderTraversal(TreeNode *root)
-{
-     if (root != nullptr)
-     {
-          inorderTraversal(root->left);
-          cout << root->data << " ";
-          inorderTraversal(root->right);
-     }
-}
-
-int main()
-{
-     Solution solution;
-     vector<int> preorder = {8, 5, 1, 7, 10, 12};
-
-     TreeNode *root = solution.bstFromPreorder(preorder);
-
-     // Print the constructed BST
-     inorderTraversal(root);
-
-     return 0;
-}

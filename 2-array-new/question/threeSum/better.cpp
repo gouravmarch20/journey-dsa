@@ -3,7 +3,6 @@
 #include <set>
  
 using namespace std;
-using namespace std;
 
 class Solution {
 public:
