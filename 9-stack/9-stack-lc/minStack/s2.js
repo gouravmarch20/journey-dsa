@@ -1,59 +1,48 @@
-function Stack() {
-    let stack = []
-  
-    this.push = (e) => stack.push(e)
-    this.pop = () => stack.pop()
-    this.isEmpty = () => !stack.length
-  
-    this.print = () => console.log(stack)
-    Object.defineProperties(this, {
-      size: {
-        get: () => stack.length,
-      },
-      top: {
-        get: function () {
-          return stack[stack.length - 1]
-        },
-      },
-      items: {
-        get: function () {
-          return stack
-        },
-      },
-    })
-  
-    this.test = () => {
-      let stack = new Stack()
-      stack.push()
-      while (!stack.isEmpty()) {
-        let x = stack.size
-        let y = stack.top
-        let z = stack.items
-        let a = stack.pop()
-        let b = stack.print()
-      }
-    }
+var MinStack = function () {
+  this.stack = [];
+};
+
+/**
+ * @param {number} val
+ * @return {void}
+ */
+MinStack.prototype.push = function (val) {
+  if (this.stack.length == 0) {
+    return this.stack.push([val, val]);
   }
-  
-  var MinStack = function () {
-    let stack = new Stack()
-  
-    this.push = function (e) {
-      let minTillHere
-      if (stack.isEmpty()) {
-        minTillHere = e
-      } else {
-        minTillHere = Math.min(stack.top.minTillHere, e)
-      }
-      return stack.push({ e, minTillHere })
-    }
-    this.top = function () {
-      return stack.top.e
-    }
-    this.getMin = function () {
-      return stack.top.minTillHere
-    }
-    this.pop = function () {
-      return stack.pop().e
-    }
-  }
+  // !m1::: [this.stack.length - 1][1] ==> to get min in stack
+  this.stack.push([val, Math.min(val, this.stack[this.stack.length - 1][1])]);
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function () {
+  this.stack.pop();
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function () {
+  let top = this.stack[this.stack.length - 1];
+  return top[0];
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function () {
+  console.log("debug", this.stack[this.stack.length - 1]);
+  let top = this.stack[this.stack.length - 1];
+  return top[1];
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * var obj = new MinStack()
+ * obj.push(val)
+ * obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.getMin()
+ */

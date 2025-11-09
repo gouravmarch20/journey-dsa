@@ -1,0 +1,1 @@
+// https://www.geeksforgeeks.org/dsa/maximum-sum-such-that-no-two-elements-are-adjacent/
