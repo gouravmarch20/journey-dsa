@@ -1,4 +1,4 @@
-//Next Greater Element II
+// 503. Next Greater Element II
 //? way1 : brute
 //*O(n^2)
 //& O(1)
